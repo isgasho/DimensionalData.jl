@@ -32,15 +32,11 @@ does not need to be known:
 
 ```
 a[X(1:10), Y(1:4)]
+view(a, X(1:20), Y(30:40))
 ```
 
-The core component is the `AbstractDimension`, and types that inherit from it,
-such as `Time`, `X`, `Y`, `Z`, the generic `Dim{:x}` or others you
-define manually using the `@dim` macro.
-
-Dims can be used for indexing and views without knowing dimension order:
-`a[X(20)]`, `view(a, X(1:20), Y(30:40))` and for indicating dimesions to reduce
-`mean(a, dims=Time)`, or permute `permutedims(a, [X, Y, Z, Time])` in julia
+Dims can also be used for indicating dimesions to e.g. reduce
+`mean(a, dims=Ti)`, or permute `permutedims(a, [X, Y, Z, Ti])` in most julia
 `Base` and `Statistics` functions that have dims arguments.
 
 
