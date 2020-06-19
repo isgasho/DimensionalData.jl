@@ -19,7 +19,7 @@ dimz = (X(), Y())
 end
 
 a = [1 2 3; 4 5 6]
-da = DimensionalArray(a, (X((143, 145)), Y((-38, -36))))
+da = DimensionalArray(a, (X(LinRange(143, 145, 2)), Y(LinRange(-38, -36, 3))))
 dimz = dims(da)
 
 @testset "slicedims" begin
@@ -155,7 +155,9 @@ end
 
 @testset "setdims" begin
     A = setdims(da, X(LinRange(150,152,2)))
-    @test val(dims(dims(A), X())) == LinRange(150,152,2)
+    @test val(dims(A, X())) == LinRange(150,152,2)
+    A = setdims(da, (X(1:2), Y(1:3)))
+    @test dims(A) == (X(1:2), Y(1:3)) 
 end
 
 @testset "swapdims" begin
